@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Joke from './Joke'
 
 const App = () => {
   const [userQuery, setUserQuery] = useState('')
@@ -28,6 +29,8 @@ const App = () => {
         />
         <button onClick={searchQuery}>Search</button>
       </section>
+      <hr />
+      <Joke />
     </div>
   )
 }
