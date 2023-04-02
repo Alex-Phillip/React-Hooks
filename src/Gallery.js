@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import PICTURES from './data/pictures'
 
 const SECONDS = 1000
+const minimumDelay = 1 * SECONDS
+const minimumIncrement = 1
 
 function Gallery() {
   const [index, setIndex] = useState(0)
@@ -11,20 +13,28 @@ function Gallery() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((storedIndex) => {
-        return (storedIndex + 1) % PICTURES.length
+        return (storedIndex + increment) % PICTURES.length
       })
     }, delay)
 
     return () => {
       clearInterval(interval)
     }
-  }, [delay])
+  }, [delay, increment])
 
   const updateDelay = (event) => {
-    const delayInput = event.target.value
-    delayInput >= 0.1
-      ? setDelay(Number(event.target.value * SECONDS))
-      : setDelay(3 * SECONDS)
+    const delay = Number(event.target.value * SECONDS)
+    setDelay(delay < minimumDelay ? minimumDelay : delay)
+  }
+
+  const updateIncrement = (event) => {
+    const increment = Number(event.target.value)
+
+    setIncrement(
+      increment < minimumIncrement || increment > 4
+        ? minimumIncrement
+        : increment
+    )
   }
 
   return (
@@ -34,6 +44,9 @@ function Gallery() {
         <div>
           Gallery transition delay (seconds):{' '}
           <input type="number" onChange={updateDelay} />
+        </div>
+        <div>
+          Gallery increment: <input type="number" onChange={updateIncrement} />
         </div>
       </article>
     </section>
