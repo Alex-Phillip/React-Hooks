@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Joke from './Joke'
 import Stories from './Stories'
+import Tasks from './Tasks'
 
 function App() {
   const [userQuery, setUserQuery] = useState('')
@@ -9,7 +10,7 @@ function App() {
     window.open(`https://google.co.uk/search?q=${userQuery}`, '_blank')
   }
 
-  const updateQuery = (event) => {
+  const updateUserQuery = (event) => {
     console.log(`User Query: ${userQuery}`)
     setUserQuery(event.target.value)
   }
@@ -28,13 +29,15 @@ function App() {
       <section className="form">
         <input
           value={userQuery}
-          onChange={updateQuery}
+          onChange={updateUserQuery}
           onKeyDown={handleKeyPress}
         />
         <button onClick={searchQuery}>Search</button>
       </section>
       <hr />
       <Joke />
+      <hr />
+      <Tasks />
       <hr />
       <Stories />
     </main>
