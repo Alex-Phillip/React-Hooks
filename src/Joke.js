@@ -4,9 +4,11 @@ const Joke = () => {
   const [joke, setJoke] = useState({})
 
   useEffect(() => {
-    fetch('https://official-joke-api.appspot.com/jokes/random')
+    const abortController = new AbortController()
+    fetch('https://official-joke-api.appspot.com/jokes/random', { signal: abortController.signal })
       .then((response) => response.json())
       .then((data) => setJoke(data))
+    return () => abortController.abort()
   }, [])
 
   const { setup, punchline } = joke
