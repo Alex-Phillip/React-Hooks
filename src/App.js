@@ -11,11 +11,23 @@ const App = () => {
     setUserQuery(event.target.value)
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      searchQuery()
+    }
+  }
+
   return (
     <div className="App">
       <h1>Hello Alex</h1>
-      <input className="input" onChange={updateQuery} />
-      <button onClick={searchQuery}>Search</button>
+      <section className="form">
+        <input
+          value={userQuery}
+          onChange={updateQuery}
+          onKeyDown={handleKeyPress}
+        />
+        <button onClick={searchQuery}>Search</button>
+      </section>
     </div>
   )
 }
