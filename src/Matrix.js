@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react'
-import PICTURES from './data/pictures'
+import MATRIX_FRAMES from './data/matrix'
 
 const SECONDS = 1000
 const minimumDelay = 0.1 * SECONDS
-const standardDelay = 3 * SECONDS
 const minimumIncrement = 1
+const standardIncrement = 5
 
-function Gallery() {
+function Matrix() {
   const [index, setIndex] = useState(0)
-  const [delay, setDelay] = useState(3 * SECONDS)
-  const [increment, setIncrement] = useState(1)
+  const [delay, setDelay] = useState(minimumDelay)
+  const [increment, setIncrement] = useState(standardIncrement)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((storedIndex) => {
-        return (storedIndex + increment) % PICTURES.length
+        return (storedIndex + increment) % MATRIX_FRAMES.length
       })
     }, delay)
 
@@ -26,29 +26,30 @@ function Gallery() {
   const updateDelay = (event) => {
     const delay = Number(event.target.value * SECONDS)
 
-    setDelay(delay < minimumDelay ? standardDelay : delay)
+    setDelay(delay < minimumDelay ? minimumDelay : delay)
   }
 
   const updateIncrement = (event) => {
     const increment = Number(event.target.value)
 
     setIncrement(
-      increment < minimumIncrement || increment > PICTURES.length - 1
-        ? minimumIncrement
+      increment < minimumIncrement || increment > MATRIX_FRAMES.length - 1
+        ? standardIncrement
         : increment
     )
   }
 
   return (
-    <section className="Gallery">
-      <img src={PICTURES[index].image} alt="gallery" />
+    <section className="Matrix">
+      <h3>Matrix</h3>
       <article className="multiform">
+        <img src={MATRIX_FRAMES[index]} alt="matrix" />
         <div>
-          Gallery transition delay (seconds):
+          Matrix transition delay (seconds):
           <input type="number" onChange={updateDelay} />
         </div>
         <div>
-          Gallery increment (maximum 4):{' '}
+          Matrix increment:
           <input type="number" onChange={updateIncrement} />
         </div>
       </article>
@@ -56,4 +57,4 @@ function Gallery() {
   )
 }
 
-export default Gallery
+export default Matrix

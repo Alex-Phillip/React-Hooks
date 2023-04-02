@@ -3,9 +3,12 @@ import Joke from './Joke'
 import Stories from './Stories'
 import Tasks from './Tasks'
 import Gallery from './Gallery'
+import Matrix from './Matrix'
 
 function App() {
   const [userQuery, setUserQuery] = useState('')
+
+  const [showMatrix, setShowMatrix] = useState(true)
   const [showGallery, setShowGallery] = useState(true)
 
   const searchQuery = () => {
@@ -23,6 +26,10 @@ function App() {
     }
   }
 
+  const toggleMatrix = () => {
+    setShowMatrix(!showMatrix)
+  }
+
   const toggleGallery = () => {
     setShowGallery(!showGallery)
   }
@@ -32,6 +39,9 @@ function App() {
   return (
     <main className="App">
       <h1>Hello {username}</h1>
+      <hr />
+      <h3>Search</h3>
+
       <section className="form">
         <input
           value={userQuery}
@@ -53,6 +63,13 @@ function App() {
       </section>
       <hr />
       <Stories />
+      <hr />
+      <section>
+        {showMatrix ? <Matrix /> : null}
+        <button onClick={toggleMatrix}>
+          {showMatrix ? 'Hide' : 'Show'} Matrix
+        </button>
+      </section>
     </main>
   )
 }
