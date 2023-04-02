@@ -12,6 +12,7 @@ function Tasks() {
 
   const addTask = () => {
     setTasks([...tasks, { taskText, id: uuid() }])
+    setTaskText('')
   }
 
   const completeTask = (completedTask) => () => {
@@ -22,6 +23,7 @@ function Tasks() {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       addTask()
+      setTaskText('')
     }
   }
 
@@ -32,9 +34,6 @@ function Tasks() {
   const deleteCompletedTask = (task) => () => {
     setCompletedTasks(completedTasks.filter((t) => t.id !== task.id))
   }
-
-  console.log('tasks: ', tasks)
-  console.log('completed tasks: ', completedTasks)
 
   return (
     <section>
