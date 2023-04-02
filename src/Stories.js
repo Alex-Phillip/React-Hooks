@@ -1,6 +1,6 @@
 import { useFetch } from './hooks'
 
-const Stories = () => {
+function Stories() {
   const stories = useFetch(
     'https://news-proxy-230704.appspot.com/topstories',
     []
