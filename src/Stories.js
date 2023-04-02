@@ -1,13 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useFetch } from './hooks'
 
 const Stories = () => {
-  const [stories, setStories] = useState([])
-
-  useEffect(() => {
-    fetch('https://news-proxy-230704.appspot.com/topstories')
-      .then((response) => response.json())
-      .then((data) => setStories(data))
-  }, [])
+  const stories = useFetch(
+    'https://news-proxy-230704.appspot.com/topstories',
+    []
+  )
 
   return (
     <section className="Stories">
@@ -17,9 +14,11 @@ const Stories = () => {
 
         return (
           <article key={id}>
-            <a href={url}>{title}</a>
+            <a href={url} target="_blank" rel="noreferrer">
+              {title}
+            </a>
             <p>
-              {by} - {new Date(time).toLocaleString()}
+              {by} - {new Date(time * 1000).toLocaleString()}
             </p>
           </article>
         )

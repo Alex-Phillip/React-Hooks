@@ -8,6 +8,7 @@ const App = () => {
   const searchQuery = () => {
     window.open(`https://google.co.uk/search?q=${userQuery}`, '_blank')
   }
+
   const updateQuery = (event) => {
     console.log(`User Query: ${userQuery}`)
     setUserQuery(event.target.value)
@@ -19,9 +20,11 @@ const App = () => {
     }
   }
 
+  const username = 'Alex'
+
   return (
-    <div className="App">
-      <h1>Hello Alex</h1>
+    <main className="App">
+      <h1>Hello {username}</h1>
       <section className="form">
         <input
           value={userQuery}
@@ -34,7 +37,7 @@ const App = () => {
       <Joke />
       <hr />
       <Stories />
-    </div>
+    </main>
   )
 }
 

@@ -52,6 +52,11 @@ button {
   object-fit: cover;
 }
 
+.loader {
+  color: green;
+  font-size: large;
+}
+
 .multiform {
   display: flex;
   flex-direction: column;
