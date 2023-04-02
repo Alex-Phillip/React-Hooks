@@ -4,9 +4,11 @@ const Stories = () => {
   const [stories, setStories] = useState([])
 
   useEffect(() => {
-    fetch('https://news-proxy-230704.appspot.com/topstories')
+    const abortController = new AbortController()
+    fetch('https://news-proxy-230704.appspot.com/topstories', { signal: abortController.signal })
       .then((response) => response.json())
       .then((data) => setStories(data))
+    return () => abortController.abort();
   }, [])
 
   return (
