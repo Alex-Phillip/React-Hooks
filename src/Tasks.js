@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import uuid from 'uuid/v4'
+import Button from './Button'
 
 const TASKS_STORAGE_KEY = 'TASKS_STORAGE_KEY'
 
@@ -65,7 +66,7 @@ function Tasks() {
           onChange={updateTaskText}
           onKeyDown={handleKeyPress}
         />
-        <button onClick={addTask}>Add Task</button>
+        <Button onClick={addTask}>Add Task</Button>
       </article>
 
       <article>
@@ -80,7 +81,7 @@ function Tasks() {
                   x
                 </span>
               </div>
-              <button onClick={completeTask(task)}>Mark Complete</button>
+              <Button onClick={completeTask(task)}>Mark Complete</Button>
             </div>
           )
         })}

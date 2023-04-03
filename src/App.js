@@ -4,6 +4,7 @@ import Stories from './Stories'
 import Tasks from './Tasks'
 import Gallery from './Gallery'
 import Matrix from './Matrix'
+import Button from './Button'
 
 function App() {
   const [userQuery, setUserQuery] = useState('')
@@ -16,7 +17,6 @@ function App() {
   }
 
   const updateUserQuery = (event) => {
-    console.log(`User Query: ${userQuery}`)
     setUserQuery(event.target.value)
   }
 
@@ -48,7 +48,7 @@ function App() {
           onChange={updateUserQuery}
           onKeyDown={handleKeyPress}
         />
-        <button onClick={searchQuery}>Search</button>
+        <Button onClick={searchQuery}>Search</Button>
       </section>
       <hr />
       <Joke />
@@ -57,18 +57,18 @@ function App() {
       <hr />
       <section>
         {showGallery ? <Gallery /> : null}
-        <button onClick={toggleGallery}>
+        <Button onClick={toggleGallery}>
           {showGallery ? 'Hide' : 'Show'} Gallery
-        </button>
+        </Button>
       </section>
       <hr />
       <Stories />
       <hr />
       <section>
         {showMatrix ? <Matrix /> : null}
-        <button onClick={toggleMatrix}>
+        <Button onClick={toggleMatrix}>
           {showMatrix ? 'Hide' : 'Show'} Matrix
-        </button>
+        </Button>
       </section>
     </main>
   )
