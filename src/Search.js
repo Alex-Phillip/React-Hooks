@@ -20,7 +20,7 @@ function Search() {
 
   return (
     <section>
-      <h3>Search</h3>
+      <h3>Google Search</h3>
       <article className="form">
         <input
           value={userQuery}
